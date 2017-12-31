@@ -10,7 +10,17 @@ export default Vue.extend({
 
   components: { ExampleSection, CodeSample },
 
-  methods: {},
+  data() {
+    return {
+      visible: false,
+    }
+  },
+
+  methods: {
+    hide() {
+      this.visible = false
+    },
+  },
 })
 </script>
 
@@ -21,6 +31,8 @@ export default Vue.extend({
         <p>
           TODO
         </p>
+
+        <Alert>Alert sample</Alert>
       </div>
     </div>
 
