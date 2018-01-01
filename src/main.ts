@@ -1,10 +1,12 @@
+// tslint:disable:variable-name
 import { Install } from "$/plugin"
 
 import form from "./components/form/Form"
+import nav from "./components/nav/Nav"
 import install from "./install"
 
-// tslint:disable-next-line:variable-name
 export const Form = form
+export const Nav = nav
 
 export default class CripVueBootstrap {
   public static install: Install

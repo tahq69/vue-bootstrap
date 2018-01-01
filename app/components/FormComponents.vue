@@ -76,7 +76,7 @@ export default Vue.extend({
 
       <code-sample>
         import Vue from "vue"
-        import CripBootstrap from "crip-vue-bootstrap"
+        import CripBootstrap, { Form } from "crip-vue-bootstrap"
 
         Vue.use(CripBootstrap)
 
