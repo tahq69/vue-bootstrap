@@ -23,7 +23,7 @@ export default Vue.extend({
 </script>
 
 <template>
-  <div class="gravatar">
+  <div class="gravatar crip-gravatar">
     <img :src="url"
          alt="avatar"
          class="img-responsive img-thumbnail">

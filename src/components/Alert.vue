@@ -39,16 +39,15 @@ export default Vue.extend({
 </script>
 
 <template>
-  <div v-if="visible">
-    <div :class="[`alert-${type}`, 'alert', 'alert-dismissible']">
-      <button type="button"
-              class="close"
-              @click="hide">
-        &times;
-      </button>
+  <div v-if="visible"
+       :class="[`alert-${type}`, 'alert', 'alert-dismissible', 'crip-alert']">
+    <button type="button"
+            class="close"
+            @click="hide">
+      &times;
+    </button>
 
-      <slot/>
+    <slot/>
 
-    </div>
   </div>
 </template>

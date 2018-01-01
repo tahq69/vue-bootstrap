@@ -21,10 +21,11 @@ export default Vue.extend({
 <template>
   <router-link :to="to"
                :class="{
+                 'btn': true,
+                 'crip-btn': true,
                  [`btn-${type}`]: !!type,
                  [`btn-${size}`]: !!size
-               }"
-               class="btn">
+               }">
     <!-- default slot -->
     <slot/>
   </router-link>
