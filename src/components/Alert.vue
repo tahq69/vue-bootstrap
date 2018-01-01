@@ -40,8 +40,7 @@ export default Vue.extend({
 
 <template>
   <div v-if="visible">
-    <div class="alert alert-dismissible"
-         :class="[`alert-${type}`]">
+    <div :class="[`alert-${type}`, 'alert', 'alert-dismissible']">
       <button type="button"
               class="close"
               @click="hide">
