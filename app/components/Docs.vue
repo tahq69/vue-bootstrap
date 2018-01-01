@@ -29,6 +29,9 @@ export default Vue.extend({
                 <router-link :to="{name: 'root'}">Default usage</router-link>
               </li>
               <li class="list-group-item">
+                <router-link :to="{name: 'form'}">Form Components</router-link>
+              </li>
+              <li class="list-group-item">
                 <router-link :to="{name: 'configurations'}">Configurations</router-link>
               </li>
             </ul>

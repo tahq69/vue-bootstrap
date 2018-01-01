@@ -10,15 +10,11 @@ export default Vue.extend({
   name: "FormPanel",
 
   props: {
-    bodyLg: { type: Number, default: 0 },
-    bodyMd: { type: Number, default: 0 },
-    bodySm: { type: Number, default: 0 },
-    bodyXs: { type: Number, default: 12 },
     lg: { type: Number, default: 0 },
     md: { type: Number, default: 0 },
     sm: { type: Number, default: 0 },
     xs: { type: Number, default: 12 },
-    form: { type: Form, default: new Form({ __: false }) },
+    form: { type: Object, default: () => new Form({ __: false }) },
     title: { type: String, required: true },
   },
 
@@ -29,15 +25,6 @@ export default Vue.extend({
   },
 
   computed: {
-    bodySizes(): ColSizes {
-      return {
-        lg: this.bodyLg,
-        md: this.bodyMd,
-        sm: this.bodySm,
-        xs: this.bodyXs,
-      }
-    },
-
     sizes(): ColSizes {
       return {
         lg: this.lg,
@@ -52,11 +39,10 @@ export default Vue.extend({
     },
 
     elementClass(): string[] {
-      const initial: string[] = []
-      if (this.hasErrors) initial.push("has-data-errors")
-      if (this.hasError) initial.push("has-global-error")
-
-      return Cols.getClasses("control", this.bodySizes, initial, true, true)
+      const classes: string[] = []
+      if (this.hasErrors) classes.push("has-data-errors")
+      if (this.hasError) classes.push("has-global-error")
+      return classes
     },
 
     hasErrors(): boolean {
@@ -99,12 +85,13 @@ export default Vue.extend({
 
     <c-panel>
       <span slot="title">{{ title }}</span>
-      <slot slot="actions"
-            name="actions"></slot>
+      <span slot="actions">
+        <slot name="actions"></slot>
+      </span>
 
       <c-row>
-        <c-col :is-visible.sync="showError">
-          <c-alert>
+        <c-col v-if="showError">
+          <c-alert :is-visible.sync="showError">
             {{ error }}
           </c-alert>
         </c-col>

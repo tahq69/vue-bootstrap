@@ -2,7 +2,6 @@
 import Vue from "vue"
 
 import Cols, { ColSizes } from "@/ColCalculator"
-import { IClasses } from "@/types"
 import Utils from "@/Utils"
 
 import Form from "./Form"
@@ -15,12 +14,12 @@ export default Vue.extend({
 
   props: {
     lg: { type: Number, default: 0 },
-    md: { type: Number, default: 0 },
-    sm: { type: Number, default: 0 },
+    md: { type: Number, default: 10 },
+    sm: { type: Number, default: 8 },
     xs: { type: Number, default: 12 },
     errors: { type: Array, default: () => [] },
     for: { type: String },
-    form: { type: Form, default: new Form({ __: false }) },
+    form: { type: Object, default: () => new Form({ __: false }) },
     label: { type: String, default: "" },
   },
 
@@ -39,18 +38,12 @@ export default Vue.extend({
     },
 
     labelClass(): string[] {
-      return Cols.getClasses("lablel", this.sizes, ["control-label"])
+      return Cols.getClasses("label", this.sizes, ["control-label"])
     },
 
     controlClass(): string[] {
       const includeOffset = this.label === ""
-      return Cols.getClasses("lablel", this.sizes, [], includeOffset)
-    },
-
-    groupClass(): IClasses {
-      return {
-        "has-error": this.hasErrors,
-      }
+      return Cols.getClasses("control", this.sizes, [], includeOffset)
     },
 
     formErrors(): string[] {
@@ -71,7 +64,7 @@ export default Vue.extend({
 </script>
 
 <template>
-  <div :class="groupClass"
+  <div :class="{'has-error': hasErrors}"
        class="form-group crip-form-group">
     <label v-if="label"
            :for="id"

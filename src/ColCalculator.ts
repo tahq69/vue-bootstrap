@@ -1,6 +1,6 @@
 import Utils from "@/Utils"
 
-export type ColType = "control" | "lablel"
+export type ColType = "control" | "label"
 export type ColSize = "lg" | "md" | "sm" | "xs"
 export type ColSizes = { [size in ColSize]: number }
 
@@ -36,7 +36,7 @@ export default class ColCalculator {
     const control = ColCalculator.colClass(size, media)
 
     if (withOffset) {
-      const offset = ColCalculator.colClass(ColCalculator.offset(size), media, true)
+      const offset = ColCalculator.colClass(ColCalculator.offset(size, averageOffset), media, true)
       return `${control} ${offset}`
     }
 
@@ -48,16 +48,19 @@ export default class ColCalculator {
   }
 
   private static colClass(size: number, media: ColSize, offset = false) {
-    const template = offset ? "col-{media}-offset-{size}" : "col-{media}-{size}"
+    if (size > 0) {
+      const template = offset ? "col-{media}-offset-{size}" : "col-{media}-{size}"
+      return Utils.supplant(template, { media, size })
+    }
 
-    return Utils.supplant(template, { media, size })
+    return ""
   }
 
-  private static offset(size: number) {
+  private static offset(size: number, average = false) {
     const availableSpace = 12 - size
 
     if (availableSpace === 0) return 0
 
-    return availableSpace
+    return average ? Math.floor(availableSpace / 2) : availableSpace
   }
 }
