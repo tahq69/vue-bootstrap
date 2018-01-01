@@ -33,8 +33,8 @@ export default Vue.extend({
       return {
         lg: this.lg,
         md: this.md,
-        sm: this.md,
-        xs: this.md,
+        sm: this.sm,
+        xs: this.xs,
       }
     },
 

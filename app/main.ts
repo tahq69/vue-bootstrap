@@ -5,7 +5,7 @@ import "./assets/styles.scss"
 import CripBootstrap from "@/main"
 import App from "./components/Docs.vue"
 
-Vue.use(CripBootstrap)
+Vue.use(CripBootstrap, { prefix: "C" })
 
 import router from "./router"
 

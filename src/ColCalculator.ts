@@ -9,7 +9,8 @@ export default class ColCalculator {
     type: ColType,
     sizes: ColSizes,
     initial: string[] = [],
-    withOffset = false
+    withOffset = false,
+    averageOffset = false
   ): string[] {
     Object.keys(sizes).forEach(size => {
       const media = size as ColSize
@@ -17,7 +18,7 @@ export default class ColCalculator {
       if (value > 0) {
         const classes =
           type === "control"
-            ? ColCalculator.controlClass(value, media, withOffset)
+            ? ColCalculator.controlClass(value, media, withOffset, averageOffset)
             : ColCalculator.labelClass(value, media)
         initial.push(classes)
       }
@@ -26,7 +27,12 @@ export default class ColCalculator {
     return initial
   }
 
-  private static controlClass(size: number, media: ColSize, withOffset: boolean): string {
+  private static controlClass(
+    size: number,
+    media: ColSize,
+    withOffset: boolean,
+    averageOffset: boolean
+  ): string {
     const control = ColCalculator.colClass(size, media)
 
     if (withOffset) {
