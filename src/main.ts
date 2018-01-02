@@ -9,7 +9,7 @@ import { NavItemGroup } from "./components/nav/NavItemGroup"
 import { Paging } from "./components/table/Paging"
 import { Utils } from "./Utils"
 
-export { ICripBootstrapOptions } from "$/index"
+export { IBootstrapOptions } from "$/index"
 
 export default {
   install,

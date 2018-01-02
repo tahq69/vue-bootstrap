@@ -2,10 +2,10 @@ import Vue from "vue"
 
 import "./assets/styles.scss"
 
-import CripBootstrap, { ICripBootstrapOptions } from "@/main"
+import CripBootstrap, { IBootstrapOptions } from "@/main"
 import App from "./components/Docs.vue"
 
-Vue.use<ICripBootstrapOptions>(CripBootstrap, { prefix: "C" })
+Vue.use<IBootstrapOptions>(CripBootstrap, { prefix: "C" })
 
 import router from "./router"
 
