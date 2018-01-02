@@ -7,7 +7,7 @@ export default Vue.extend({
   props: {
     left: { type: Array, default: () => [] },
     right: { type: Array, default: () => [] },
-    containered: {type: Boolean, default: true},
+    containered: {type: Boolean, default: false},
   },
 
   computed: {
@@ -23,7 +23,7 @@ export default Vue.extend({
 </script>
 
 <template>
-  <nav class="navbar navbar-default navbar-static-top crip-navbar">
+  <nav class="navbar crip-navbar">
     <div :class="{container: containered}">
       <div class="navbar-header">
 

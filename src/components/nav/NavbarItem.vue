@@ -15,7 +15,7 @@ export default Vue.extend({
       return {
         active: this.item.isActive,
         divider: this.item.divider === true,
-        dropdownHeader: !hasAction,
+        "dropdown-header": !hasAction,
       }
     },
   },
