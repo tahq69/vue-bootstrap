@@ -1,5 +1,5 @@
 // tslint:disable:no-bitwise
-export default class Utils {
+export class Utils {
   /**
    * Determines is the value undefined.
    *

@@ -1,10 +1,10 @@
-import Utils from "@/Utils"
+import { Utils } from "@/Utils"
 
 export type ColType = "control" | "label"
 export type ColSize = "lg" | "md" | "sm" | "xs"
 export type ColSizes = { [size in ColSize]: number }
 
-export default class ColCalculator {
+export class ColCalculator {
   public static getClasses(
     type: ColType,
     sizes: ColSizes,

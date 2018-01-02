@@ -4,7 +4,7 @@ import { INavItemOptions } from "./types"
 
 let key = 200000
 
-export default class NavItem {
+export class NavItem {
   public key: number
   public isActive: boolean
   public divider: boolean

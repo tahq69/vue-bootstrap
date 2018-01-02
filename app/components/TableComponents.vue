@@ -2,7 +2,7 @@
 import faker from "faker"
 import Vue from "vue"
 
-import CripBootstrap, { Paging } from "@/main"
+import Crip from "@/main"
 import CodeSample from "./CodeSample.vue"
 import ExampleSection from "./ExampleSection.vue"
 
@@ -41,7 +41,7 @@ export default Vue.extend({
     }, [])
     return {
       items,
-      paging: new Paging<User>(this, { route: { name: "table" }, perPage: 10 }),
+      paging: new Crip.Paging<User>(this, { route: { name: "table" }, perPage: 10 }),
     }
   },
 
@@ -133,11 +133,11 @@ export default Vue.extend({
                 <tr v-for="user in paging.items"
                     :key="user.id"
                     :class="paging.classes(user)">
-                  <td>{{ user.firstName }} </td>
-                  <td>{{ user.lastName }} </td>
-                  <td>{{ user.email }} </td>
-                  <td>{{ user.city }} </td>
-                  <td>{{ user.work }} </td>
+                  <td class="text-nowrap">{{ user.firstName }}</td>
+                  <td class="text-nowrap">{{ user.lastName }}</td>
+                  <td class="text-nowrap">{{ user.email }}</td>
+                  <td class="text-nowrap">{{ user.city }}</td>
+                  <td class="text-nowrap">{{ user.work }}</td>
                 </tr>
               </tbody>
             </table>

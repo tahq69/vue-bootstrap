@@ -3,7 +3,7 @@ import { Location } from "vue-router"
 
 import { IDictionary, IPagination } from "$/index"
 
-export default class Paging<T extends { id: string | number }> {
+export class Paging<T extends { id: string | number }> {
   public direction: string
   public page: number
   public perPage: number

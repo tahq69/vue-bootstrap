@@ -2,8 +2,8 @@
 import Vue from "vue"
 import { Location } from "vue-router"
 
-import Page from "./Page"
-import Paging from "./Paging"
+import { Page } from "./Page"
+import { Paging } from "./Paging"
 
 export default Vue.extend({
   name: "Pagination",

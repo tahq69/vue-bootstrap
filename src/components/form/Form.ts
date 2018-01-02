@@ -2,7 +2,7 @@ interface IErrors<ErrorT> {
   [key: string]: ErrorT
 }
 
-export default class Form<DataT, ErrorT = string[]> {
+export class Form<DataT, ErrorT = string[]> {
   public unknownError: string = ""
   public errors: IErrors<ErrorT>
   public data: DataT

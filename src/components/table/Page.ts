@@ -1,6 +1,6 @@
-import Utils from "@/Utils"
+import { Utils } from "@/Utils"
 
-export default class Page {
+export class Page {
   public key: string
   public nr: number
   public text: string

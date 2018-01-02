@@ -5,7 +5,7 @@ import CPanel from "@/components/panel/Panel.vue"
 import CPagination from "./Pagination.vue"
 import CPerPage from "./PerPage.vue"
 
-import Paging from "./Paging"
+import { Paging } from "./Paging"
 
 export default Vue.extend({
   name: "Grid",
@@ -51,9 +51,20 @@ export default Vue.extend({
   </c-panel>
 </template>
 
-<style>
+<style lang="scss">
 .panel-body .pagination,
 .grid-placeholder .table {
   margin: 0;
+}
+
+.crip-table-row {
+  .actions {
+    visibility: hidden;
+  }
+
+  &:hover .actions,
+  &.active .actions {
+    visibility: visible;
+  }
 }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
 import Vue from "vue"
 
-import CripBootstrap, { Form } from "@/main"
+import Crip from "@/main"
 import CodeSample from "./CodeSample.vue"
 import ExampleSection from "./ExampleSection.vue"
 
@@ -12,7 +12,7 @@ export default Vue.extend({
 
   data() {
     return {
-      form: new Form({ val1: "" }),
+      form: new Crip.Form({ val1: "" }),
     }
   },
 

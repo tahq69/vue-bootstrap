@@ -1,7 +1,7 @@
 <script lang="ts">
 import Vue from "vue"
 
-import CripBootstrap, { Nav } from "@/main"
+import Crip from "@/main"
 import CodeSample from "./CodeSample.vue"
 import ExampleSection from "./ExampleSection.vue"
 
@@ -15,21 +15,21 @@ export default Vue.extend({
     const form = { route: "form-components", text: "Form components" }
     return {
       left: [
-        Nav.group("Dropdown", [
-          Nav.item({ text: "Header" }),
-          Nav.divider(),
-          Nav.group("Submenu", [
-            Nav.item({ text: "Form components", route: "form-components" }),
-            Nav.item({ text: "Blog", href: "http://hrefs.crip.lv/home", target: "_blank" }),
-            Nav.item({ text: "Callback", click: () => alert("callback") }),
+        Crip.Nav.group("Dropdown", [
+          Crip.Nav.item({ text: "Header" }),
+          Crip.Nav.divider(),
+          Crip.Nav.group("Submenu", [
+            Crip.Nav.item({ text: "Form components", route: "form-components" }),
+            Crip.Nav.item({ text: "Blog", href: "http://hrefs.crip.lv/home", target: "_blank" }),
+            Crip.Nav.item({ text: "Callback", click: () => alert("callback") }),
           ]),
         ]),
       ],
 
       right: [
-        Nav.item({ text: "Blog", href: "http://hrefs.crip.lv/home", target: "_blank" }),
-        Nav.item({ text: "Author", href: authorUrl, target: "_blank" }),
-        Nav.item({ text: "Repository", href: `${authorUrl}/vue-bootstrap` }),
+        Crip.Nav.item({ text: "Blog", href: "http://hrefs.crip.lv/home", target: "_blank" }),
+        Crip.Nav.item({ text: "Author", href: authorUrl, target: "_blank" }),
+        Crip.Nav.item({ text: "Repository", href: `${authorUrl}/vue-bootstrap` }),
       ],
     }
   },
@@ -61,9 +61,9 @@ export default Vue.extend({
 
       <code-sample>
         import Vue from "vue"
-        import CripBootstrap, { Nav } from "crip-vue-bootstrap"
+        import Crip from "crip-vue-bootstrap"
 
-        Vue.use(CripBootstrap)
+        Vue.use(Crip)
 
         Vue.extend({
           template: `
@@ -76,13 +76,13 @@ export default Vue.extend({
           data() {
             return {
               left: [
-                Nav.group("Dropdown", [
-                  Nav.item({ text: "Header" }),
-                  Nav.divider(),
-                  Nav.group("Submenu", [
-                    Nav.item({ text: "Form components", route: "form-components" }),
-                    Nav.item({ text: "Blog", href: "http://hrefs.crip.lv/home", target: "_blank" }),
-                    Nav.item({ text: "Callback", click: () => alert("callback") }),
+                Crip.Nav.group("Dropdown", [
+                  Crip.Nav.item({ text: "Header" }),
+                  Crip.Nav.divider(),
+                  Crip.Nav.group("Submenu", [
+                    Crip.Nav.item({ text: "Form components", route: "form-components" }),
+                    Crip.Nav.item({ text: "Blog", href: "http://hrefs.crip.lv/home", target: "_blank" }),
+                    Crip.Nav.item({ text: "Callback", click: () => alert("callback") }),
                   ]),
                 ]),
               ]

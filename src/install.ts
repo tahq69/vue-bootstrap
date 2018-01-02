@@ -1,6 +1,7 @@
 import Vue from "vue"
 
-import { Install } from "$/plugin"
+import { IBootstrapOptions } from "$/index"
+
 import Alert from "./components/Alert.vue"
 import Gravatar from "./components/Gravatar.vue"
 
@@ -27,13 +28,13 @@ import PerPage from "./components/table/PerPage.vue"
 let installed = false
 let vueInstance: any
 
-const install: Install = (vue: typeof Vue, options?: any) => {
+const install = (vue: typeof Vue, options: IBootstrapOptions = {}) => {
   if (installed && vueInstance === vue) return
 
   installed = true
   vueInstance = vue
 
-  const prefix = options && options.prefix ? options.prefix : "Crip"
+  const prefix = options.prefix ? options.prefix : "Crip"
 
   vue.component(`${prefix}Alert`, Alert)
   vue.component(`${prefix}Gravatar`, Gravatar)
@@ -48,7 +49,7 @@ const install: Install = (vue: typeof Vue, options?: any) => {
   vue.component(`${prefix}NavbarItems`, NavbarItems)
   if (prefix !== "C") {
     // This component is used recursively, so we should ensure it is registered
-    // with correct name.
+    // with correct name for internal use.
     vue.component(`CNavbarItems`, NavbarItems)
   }
 

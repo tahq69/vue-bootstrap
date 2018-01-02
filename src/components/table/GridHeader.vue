@@ -4,7 +4,7 @@ import { Route } from "vue-router"
 
 import { Direction } from "$/table"
 
-import Paging from "./Paging"
+import { Paging } from "./Paging"
 
 export default Vue.extend({
   name: "GridHeader",

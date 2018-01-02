@@ -1,21 +1,24 @@
 // tslint:disable:variable-name
-import { Install } from "$/plugin"
 
-import form from "./components/form/Form"
-import nav from "./components/nav/Nav"
-import paging from "./components/table/Paging"
 import install from "./install"
-import utils from "./Utils"
 
-export const Form = form
-export const Nav = nav
-export const Utils = utils
-export const Paging = paging
+import { Form } from "./components/form/Form"
+import { Nav } from "./components/nav/Nav"
+import { NavItem } from "./components/nav/NavItem"
+import { NavItemGroup } from "./components/nav/NavItemGroup"
+import { Paging } from "./components/table/Paging"
+import { Utils } from "./Utils"
 
-export default class CripVueBootstrap {
-  public static install: Install
-  public static version: string
+export { ICripBootstrapOptions } from "$/index"
+
+export default {
+  install,
+  version: "__VERSION__",
+
+  Form,
+  Nav,
+  NavItem,
+  NavItemGroup,
+  Paging,
+  Utils,
 }
-
-CripVueBootstrap.install = install
-CripVueBootstrap.version = "__VERSION__"

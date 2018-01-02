@@ -1,10 +1,10 @@
 <script lang="ts">
 import Vue from "vue"
 
-import Cols, { ColSizes } from "@/ColCalculator"
+import { ColCalculator as Cols, ColSizes } from "@/ColCalculator"
 import { IClasses } from "@/types"
-import Utils from "@/Utils"
-import Form from "./Form"
+import { Utils } from "@/Utils"
+import { Form } from "./Form"
 
 export default Vue.extend({
   name: "FormPanel",
@@ -14,6 +14,7 @@ export default Vue.extend({
     md: { type: Number, default: 0 },
     sm: { type: Number, default: 0 },
     xs: { type: Number, default: 12 },
+
     form: { type: Object, default: () => new Form({ __: false }) },
     title: { type: String, required: true },
   },

@@ -1,7 +1,7 @@
 <script lang="ts">
 import Vue from "vue"
 
-import CripNotice from "@/main"
+import Crip from "@/main"
 import CodeSample from "./CodeSample.vue"
 import ExampleSection from "./ExampleSection.vue"
 

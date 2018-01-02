@@ -1,10 +1,10 @@
 <script lang="ts">
 import Vue from "vue"
 
-import Cols, { ColSizes } from "@/ColCalculator"
-import Utils from "@/Utils"
+import { ColCalculator as Cols, ColSizes } from "@/ColCalculator"
+import { Utils } from "@/Utils"
 
-import Form from "./Form"
+import { Form } from "./Form"
 import FormErrors from "./FormErrors.vue"
 
 export default Vue.extend({
@@ -17,6 +17,7 @@ export default Vue.extend({
     md: { type: Number, default: 10 },
     sm: { type: Number, default: 8 },
     xs: { type: Number, default: 12 },
+
     errors: { type: Array, default: () => [] },
     for: { type: String },
     form: { type: Object, default: () => new Form({ __: false }) },
