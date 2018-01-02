@@ -19,6 +19,11 @@ import NavbarItems from "./components/nav/NavbarItems.vue"
 import Panel from "./components/panel/Panel.vue"
 import PanelAction from "./components/panel/PanelAction.vue"
 
+import Grid from "./components/table/Grid.vue"
+import GridHeader from "./components/table/GridHeader.vue"
+import Pagination from "./components/table/Pagination.vue"
+import PerPage from "./components/table/PerPage.vue"
+
 let installed = false
 let vueInstance: any
 
@@ -49,6 +54,11 @@ const install: Install = (vue: typeof Vue, options?: any) => {
 
   vue.component(`${prefix}Panel`, Panel)
   vue.component(`${prefix}PanelAction`, PanelAction)
+
+  vue.component(`${prefix}Grid`, Grid)
+  vue.component(`${prefix}GridHeader`, GridHeader)
+  vue.component(`${prefix}Pagination`, Pagination)
+  vue.component(`${prefix}PerPage`, PerPage)
 
   vue.directive(`${prefix}Focus`, Focus)
   vue.directive(`${prefix}ClickOutside`, ClickOutside)

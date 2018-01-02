@@ -8,6 +8,7 @@ export default Vue.extend({
   name: "Panel",
 
   props: {
+    showBody: { type: Boolean, default: true },
     showFooter: { type: Boolean, default: false },
     showHeading: { type: Boolean, default: true },
     type: { type: String, default: "default", validator: typeValid },
@@ -36,7 +37,8 @@ export default Vue.extend({
     <!-- pre-body slot -->
     <slot name="pre-body" />
 
-    <div class="panel-body">
+    <div class="panel-body"
+         v-if="showBody">
       <!-- default slot -->
       <slot/>
     </div>
