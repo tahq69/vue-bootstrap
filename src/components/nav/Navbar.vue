@@ -5,9 +5,9 @@ export default Vue.extend({
   name: "Navbar",
 
   props: {
+    containered: { type: Boolean, default: false },
     left: { type: Array, default: () => [] },
     right: { type: Array, default: () => [] },
-    containered: {type: Boolean, default: false},
   },
 
   computed: {
@@ -24,7 +24,10 @@ export default Vue.extend({
 
 <template>
   <nav class="navbar crip-navbar">
-    <div :class="{container: containered}">
+    <div :class="{
+           'container': containered,
+           'container-fluid': !containered
+         }">
       <div class="navbar-header">
 
         <!-- Collapsed Hamburger -->

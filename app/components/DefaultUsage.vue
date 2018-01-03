@@ -32,7 +32,7 @@ export default Vue.extend({
           TODO
         </p>
 
-        <c-alert>Alert sample</c-alert>
+        <crip-alert>Alert sample</crip-alert>
       </div>
     </div>
 

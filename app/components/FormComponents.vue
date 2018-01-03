@@ -37,8 +37,8 @@ export default Vue.extend({
 <template>
   <div>
     <example-section title="Form components">
-      <c-row>
-        <c-col>
+      <crip-row>
+        <crip-col>
           <p>
             Panel component wrapped in to form with form group.
           </p>
@@ -47,32 +47,32 @@ export default Vue.extend({
                   @click="addError()">Show form error</button>
           <button class="btn btn-success"
                   @click="removeError()">Hide form error</button>
-        </c-col>
-      </c-row>
+        </crip-col>
+      </crip-row>
       <hr>
-      <c-row>
-        <c-col>
-          <c-form-panel title="Form title"
-                        :form="form"
-                        @submit="save">
+      <crip-row>
+        <crip-col>
+          <crip-form-panel title="Form title"
+                           :form="form"
+                           @submit="save">
 
-            <c-form-group :errors="form.errors.val1"
-                          label="Val1:"
-                          for="val1">
+            <crip-form-group :errors="form.errors.val1"
+                             label="Val1:"
+                             for="val1">
               <input type="text"
                      id="val1"
                      v-model="form.data.val1"
                      class="form-control">
-            </c-form-group>
+            </crip-form-group>
 
-            <c-form-group>
+            <crip-form-group>
               <input type="submit"
                      class="btn btn-primary">
-            </c-form-group>
+            </crip-form-group>
 
-          </c-form-panel>
-        </c-col>
-      </c-row>
+          </crip-form-panel>
+        </crip-col>
+      </crip-row>
 
       <code-sample>
         import Vue from "vue"

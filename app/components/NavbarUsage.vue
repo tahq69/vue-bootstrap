@@ -41,23 +41,23 @@ export default Vue.extend({
 <template>
   <div>
     <example-section title="Form components">
-      <c-row>
-        <c-col>
+      <crip-row>
+        <crip-col>
           <p>
             Bootstrap navigation component.
           </p>
-        </c-col>
-      </c-row>
+        </crip-col>
+      </crip-row>
       <hr>
-      <c-row>
-        <c-col>
-          <c-navbar :left="left"
+      <crip-row>
+        <crip-col>
+          <crip-navbar :left="left"
                     :right="right"
                     class="navbar-default navbar-static-top">
             <span class="navbar-brand">Banner</span>
-          </c-navbar>
-        </c-col>
-      </c-row>
+          </crip-navbar>
+        </crip-col>
+      </crip-row>
 
       <code-sample>
         import Vue from "vue"

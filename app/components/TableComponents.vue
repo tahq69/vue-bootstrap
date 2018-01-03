@@ -89,44 +89,44 @@ export default Vue.extend({
 <template>
   <div>
     <example-section title="Router table">
-      <c-row>
-        <c-col>
+      <crip-row>
+        <crip-col>
           <p>
             Router table stores pagination data in a url and on any change in a url or click
             to element will fetch new data.
           </p>
-        </c-col>
-      </c-row>
-      <c-row>
-        <c-col>
-          <c-grid :paging="paging"
+        </crip-col>
+      </crip-row>
+      <crip-row>
+        <crip-col>
+          <crip-grid :paging="paging"
                   type="info">
             <span slot="title">All parameters stored in a url</span>
 
             <table class="table">
               <thead>
                 <tr>
-                  <c-grid-header :paging="paging"
+                  <crip-grid-header :paging="paging"
                                  column="firstName"
                                  @change="change">
                     First name
-                  </c-grid-header>
-                  <c-grid-header :paging="paging"
+                  </crip-grid-header>
+                  <crip-grid-header :paging="paging"
                                  column="lastName">
                     Last Name
-                  </c-grid-header>
-                  <c-grid-header :paging="paging"
+                  </crip-grid-header>
+                  <crip-grid-header :paging="paging"
                                  column="email">
                     Email
-                  </c-grid-header>
-                  <c-grid-header :paging="paging"
+                  </crip-grid-header>
+                  <crip-grid-header :paging="paging"
                                  column="city">
                     City
-                  </c-grid-header>
-                  <c-grid-header :paging="paging"
+                  </crip-grid-header>
+                  <crip-grid-header :paging="paging"
                                  column="work">
                     Work
-                  </c-grid-header>
+                  </crip-grid-header>
                 </tr>
               </thead>
               <tbody>
@@ -141,9 +141,9 @@ export default Vue.extend({
                 </tr>
               </tbody>
             </table>
-          </c-grid>
-        </c-col>
-      </c-row>
+          </crip-grid>
+        </crip-col>
+      </crip-row>
 
       <code-sample>
         import Vue from "vue"
