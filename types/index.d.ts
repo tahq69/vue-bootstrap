@@ -1,5 +1,6 @@
 import Vue from "vue"
 
+export * from "./form"
 export * from "./nav"
 export * from "./table"
 
