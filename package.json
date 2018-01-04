@@ -1,6 +1,6 @@
 {
   "name": "crip-vue-bootstrap",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Bootstrap components wrapped for Vue.js apps",
   "main": "lib/crip-vue-bootstrap.js",
   "typings": "types/index.d.ts",
