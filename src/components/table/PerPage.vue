@@ -14,6 +14,7 @@ export default Vue.extend({
     onChange(val: number) {
       this.$router.push({
         ...this.paging.route,
+        page: 1,
         perPage: val,
       } as any)
       this.$emit("change", val)

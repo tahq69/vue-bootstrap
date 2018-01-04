@@ -44,6 +44,7 @@ export default Vue.extend({
         'dropdown-submenu': submenu,
         'open': isOpen
       }"
+      @click="dropdownHide"
       v-c-click-outside="dropdownHide">
     <a href
        @click.prevent="dropdownToggle"
