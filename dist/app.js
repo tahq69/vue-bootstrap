@@ -1,5 +1,5 @@
 /*!
-* Crip Vue Bootstrap v0.0.4
+* Crip Vue Bootstrap v0.0.5
 * Forged by Igors Krasjukovs <tahq69@gmail.com>
 * Released under the MIT License.
 */
@@ -507,7 +507,7 @@ function toComment(sourceMap) {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     install: __WEBPACK_IMPORTED_MODULE_0__install__["a" /* default */],
-    version: "0.0.4",
+    version: "0.0.5",
     Form: __WEBPACK_IMPORTED_MODULE_1__components_form_Form__["a" /* Form */],
     Nav: __WEBPACK_IMPORTED_MODULE_2__components_nav_Nav__["a" /* Nav */],
     NavItem: __WEBPACK_IMPORTED_MODULE_3__components_nav_NavItem__["a" /* NavItem */],
@@ -2894,7 +2894,7 @@ var Component = normalizeComponent(
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ts_loader_node_modules_vue_loader_lib_selector_type_script_index_0_NavbarGroup_vue__ = __webpack_require__(27);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_eaf3a70a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NavbarGroup_vue__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_504a7893_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NavbarGroup_vue__ = __webpack_require__(71);
 function injectStyle (ssrContext) {
   __webpack_require__(68)
 }
@@ -2914,7 +2914,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__ts_loader_node_modules_vue_loader_lib_selector_type_script_index_0_NavbarGroup_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_eaf3a70a_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NavbarGroup_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_504a7893_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_NavbarGroup_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -2935,7 +2935,7 @@ var content = __webpack_require__(69);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(8)("42469a91", content, true);
+var update = __webpack_require__(8)("9046a778", content, true);
 
 /***/ }),
 /* 69 */
@@ -2993,7 +2993,7 @@ var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._sel
       'dropdown': !_vm.submenu,
       'dropdown-submenu': _vm.submenu,
       'open': _vm.isOpen
-    },on:{"click":_vm.dropdownHide}},[_c('a',{staticClass:"dropdown-toggle",attrs:{"href":"","data-toggle":"dropdown"},on:{"click":function($event){$event.preventDefault();_vm.dropdownToggle($event)}}},[_vm._v("\n    "+_vm._s(_vm.item.text)+"\n    "),_c('span',{staticClass:"caret"})]),_vm._v(" "),(_vm.hasItems)?_c('c-navbar-items',{staticClass:"dropdown-menu",attrs:{"items":_vm.items,"submenu":true}}):_vm._e()],1)}
+    }},[_c('a',{staticClass:"dropdown-toggle",attrs:{"href":"","data-toggle":"dropdown"},on:{"click":function($event){$event.preventDefault();_vm.dropdownToggle($event)}}},[_vm._v("\n    "+_vm._s(_vm.item.text)+"\n    "),_c('span',{staticClass:"caret"})]),_vm._v(" "),(_vm.hasItems)?_c('c-navbar-items',{staticClass:"dropdown-menu",attrs:{"items":_vm.items,"submenu":true}}):_vm._e()],1)}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
