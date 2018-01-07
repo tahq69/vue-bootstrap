@@ -1,11 +1,18 @@
-import Vue from "vue"
+import Vue, { VueConstructor } from "vue"
 import { Location } from "vue-router"
 
 import { IDictionary } from "$/index"
 
 export type Direction = "asc" | "desc"
 
-export interface IPagination<T> {
+export type CreatePagination<T extends IPagingItem> = (paging: Paging<T>) => Promise<IPaging<T>>
+export type Id = number | string
+
+export interface IPagingItem {
+  id: Id
+}
+
+export interface IPaging<T extends IPagingItem> {
   currentPage?: number
   items: T[]
   lastPage: number
@@ -13,6 +20,7 @@ export interface IPagination<T> {
 }
 
 export interface IPaginationOptions {
+  vm?: Vue
   route?: Location
   activeClass?: string
   disabledClass?: string
@@ -23,12 +31,12 @@ export interface IPaginationOptions {
   perPageOptions?: number[]
 }
 
-export declare class Paging<T extends { id: string | number }> {
+export declare class Paging<T extends IPagingItem> {
   public direction: Direction
   public page: number
   public perPage: number
   public sort: string
-  public vm: Vue
+  public vm?: Vue
 
   public activeClass: string
   public disabledClass: string
@@ -38,7 +46,7 @@ export declare class Paging<T extends { id: string | number }> {
   public selected: T | null
   public show: number
 
-  constructor(vm: Vue, options?: IPaginationOptions)
+  constructor(options?: IPaginationOptions)
 
   public route: Location
   public urlParams: IDictionary<string>
@@ -46,5 +54,12 @@ export declare class Paging<T extends { id: string | number }> {
   public init(callback: (paging: Paging<T>) => void): Promise<void>
   public classes(item: T, extra?: IDictionary<boolean>): IDictionary<boolean>
   public select(item: T): void
-  public update(pagination: IPagination<T>): void
+  public update(pagination: IPaging<T>): boolean
+}
+
+export declare function createPaging<T extends IPagingItem>(
+  callback: CreatePagination<T>
+): {
+  mixin: VueConstructor<Record<never, any> & Vue>
+  paging: Paging<T>
 }

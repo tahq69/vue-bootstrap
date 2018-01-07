@@ -3,10 +3,8 @@
 import install from "./install"
 
 import { Form } from "./components/form/Form"
-import { Nav } from "./components/nav/Nav"
-import { NavItem } from "./components/nav/NavItem"
-import { NavItemGroup } from "./components/nav/NavItemGroup"
-import { Paging } from "./components/table/Paging"
+import { Nav, NavItem, NavItemGroup } from "./components/nav"
+import { createPaging, Paging } from "./components/table"
 import { Utils } from "./Utils"
 
 export { IBootstrapOptions } from "$/index"
@@ -14,6 +12,8 @@ export { IBootstrapOptions } from "$/index"
 export default {
   install,
   version: "__VERSION__",
+
+  createPaging,
 
   Form,
   Nav,
