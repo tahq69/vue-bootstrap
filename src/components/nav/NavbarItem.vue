@@ -6,6 +6,7 @@ export default Vue.extend({
 
   props: {
     item: { type: Object, required: true },
+    submenu: { type: Boolean, default: false },
   },
 
   computed: {
@@ -14,8 +15,10 @@ export default Vue.extend({
 
       return {
         active: this.item.isActive,
-        divider: this.item.divider === true,
+        "dropdown-divider": this.item.divider,
         "dropdown-header": !hasAction,
+        "dropdown-item": this.submenu && hasAction && !this.item.divider,
+        "nav-item nav-link": hasAction && !this.item.divider && !this.submenu,
       }
     },
   },
@@ -26,23 +29,22 @@ export default Vue.extend({
   <router-link v-if="item.route"
                :to="item.route"
                active-class="active"
-               tag="li">
-    <a v-html="item.text" />
-  </router-link>
+               :class="[submenu ? 'dropdown-item' : 'nav-item']"
+               v-html="item.text" />
 
-  <li v-else-if="!item.route"
-      :class="classes">
-    <a v-if="item.href"
-       :href="item.href"
-       v-html="item.text"
-       :target="item.target" />
+  <a v-else-if="!item.route && item.href"
+     :href="item.href"
+     v-html="item.text"
+     :target="item.target"
+     :class="classes" />
 
-    <a v-else-if="item.click"
-       @click.prevent="item.click"
-       v-html="item.text"
-       href />
+  <a v-else-if="!item.route && item.click"
+     @click.prevent="item.click"
+     v-html="item.text"
+     :class="classes"
+     href />
 
-    <span v-else
-          v-html="item.text" />
-  </li>
+  <div v-else
+       :class="classes"
+       v-html="item.text" />
 </template>

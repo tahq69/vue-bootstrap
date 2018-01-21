@@ -95,7 +95,7 @@ export default Vue.extend({
                 &lt;input type="text"
                        id="val1"
                        v-model="form.data.val1"
-                       class="form-control"&gt;
+                       :class="[{'is-invalid': form.errors.val1}, 'form-control']"&gt;
               &lt;/crip-form-group&gt;
 
               &lt;crip-form-group&gt;

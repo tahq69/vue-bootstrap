@@ -23,38 +23,23 @@ export default Vue.extend({
 </script>
 
 <template>
-  <nav class="navbar crip-navbar">
+  <nav class="crip-navbar navbar navbar-expand navbar-dark bg-primary">
     <div :class="{
            'container': containered,
            'container-fluid': !containered
          }">
-      <div class="navbar-header">
+      <slot><!-- default slot for navbar-brand --></slot>
 
-        <!-- Collapsed Hamburger -->
-        <button type="button"
-                class="navbar-toggle collapsed"
-                data-toggle="collapse"
-                data-target="#app-navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-
-        <!-- Branding Image -->
-        <slot/>
-      </div>
-
-      <div id="app-navbar-collapse"
-           class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse">
         <!-- Left Side Of Navbar -->
         <c-navbar-items v-if="hasLeftMenu"
                         :items="left"
-                        class="nav navbar-nav" />
+                        class="navbar-nav mr-auto" />
 
         <!-- Right Side Of Navbar -->
         <c-navbar-items v-if="hasRightMenu"
                         :items="right"
-                        class="nav navbar-nav navbar-right" />
+                        class="navbar-nav" />
       </div>
     </div>
   </nav>

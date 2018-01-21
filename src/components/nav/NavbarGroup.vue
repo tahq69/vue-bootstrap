@@ -39,25 +39,26 @@ export default Vue.extend({
 </script>
 
 <template>
-  <li :class="{
+  <div :class="{
         'dropdown': !submenu,
         'dropdown-submenu': submenu,
-        'open': isOpen
+        'dropdown-item': submenu,
+        'show': isOpen,
+        'nav-item': !submenu,
       }"
       v-c-click-outside="dropdownHide">
     <a href
        @click.prevent="dropdownToggle"
-       class="dropdown-toggle"
-       data-toggle="dropdown">
+       :class="[{'nav-link': !submenu}, 'dropdown-toggle', 'd-block']">
       {{ item.text }}
-      <span class="caret"></span>
     </a>
 
     <c-navbar-items v-if="hasItems"
                     :items="items"
                     :submenu="true"
+                    :class="{'show': isOpen}"
                     class="dropdown-menu" />
-  </li>
+  </div>
 </template>
 
 <style lang="scss">

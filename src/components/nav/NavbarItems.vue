@@ -11,22 +11,23 @@ export default Vue.extend({
 
   props: {
     items: { type: Array, default: () => [] },
-    submenu: { type: Boolean, required: false },
+    submenu: { type: Boolean, required: false, default: false },
   },
 })
 </script>
 
 <template>
-  <ul>
+  <div>
     <template v-for="item in items">
       <c-navbar-item v-if="!item.items"
                      :item="item"
-                     :key="item.key" />
+                     :key="item.key"
+                     :submenu="submenu" />
       <c-navbar-group v-else
                       :item="item.parent"
                       :items="item.items"
                       :submenu="submenu"
                       :key="item.key" />
     </template>
-  </ul>
+  </div>
 </template>
