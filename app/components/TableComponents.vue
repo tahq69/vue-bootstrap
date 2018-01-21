@@ -103,7 +103,7 @@ export default Vue.extend({
                   type="info">
             <span slot="title">All parameters stored in a url</span>
 
-            <table class="table">
+            <table class="table table-hover table-sm">
               <thead>
                 <tr>
                   <crip-grid-header :paging="paging"

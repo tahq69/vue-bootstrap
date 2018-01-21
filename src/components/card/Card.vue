@@ -16,6 +16,18 @@ export default Vue.extend({
     showHeader: { type: Boolean, default: true },
     type: { type: String, default: "", validator: typeValid },
   },
+
+  computed: {
+    headerStyles(): any {
+      return [
+        {
+          "text-white": this.type !== "light" && this.type !== "",
+          [`bg-${this.type}`]: this.type !== "",
+        },
+        "card-header", "clearfix"
+      ]
+    }
+  }
 })
 </script>
 
@@ -29,7 +41,7 @@ export default Vue.extend({
        ]">
 
     <div v-if="showHeader"
-         class="card-header clearfix">
+         :class="headerStyles">
 
       <h5 class="crip-card-title float-left m-0">
         <slot name="title"><!-- title slot --></slot>

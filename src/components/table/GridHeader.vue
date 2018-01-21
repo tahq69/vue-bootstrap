@@ -64,16 +64,12 @@ export default Vue.extend({
       nowrap>
     <router-link :to="route"
                  @click.native="change($event)"
-                 class="crip-sort-th-anchor clearfix">
-      <slot/>
-
-      <span class="crip-caret"
-            v-if="isEnabled">
-        <span v-if="direction == 'asc'"
-              class="glyphicon glyphicon-triangle-bottom"></span>
-        <span v-else
-              class="glyphicon glyphicon-triangle-top"></span>
-      </span>
+                 :class="[
+                   { 'crip-caret': isEnabled },
+                   'crip-sort-th-anchor', 'clearfix',
+                   direction == 'asc' ? 'asc' : 'desc'
+                 ]">
+      <slot><!-- default slot for header content --></slot>
     </router-link>
   </th>
 </template>
@@ -83,7 +79,7 @@ export default Vue.extend({
   padding: 0;
 
   .crip-sort-th-anchor {
-    padding: 8px 25px 8px 8px;
+    padding: 8px;
     display: block;
     height: 100%;
     cursor: pointer;
@@ -95,8 +91,26 @@ export default Vue.extend({
   }
 
   .crip-caret {
-    position: absolute;
-    right: 8px;
+    &::after {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      margin-left: .255em;
+      vertical-align: .255em;
+      content: "";
+      border-right: .3em solid transparent;
+      border-left: .3em solid transparent;
+    }
+
+    &.asc::after {
+      border-top: 0;
+      border-bottom: .3em solid;
+    }
+
+    &.desc::after {
+      border-top: .3em solid;
+      border-bottom: 0;
+    }
   }
 }
 </style>

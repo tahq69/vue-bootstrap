@@ -15,7 +15,7 @@ export default Vue.extend({
   props: {
     paging: { type: Paging, required: true },
     showHeading: { type: Boolean, default: true },
-    type: { type: String, default: "default" },
+    type: { type: String, default: "" },
   },
 })
 </script>

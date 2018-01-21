@@ -85,12 +85,13 @@ export default Vue.extend({
   <ul class="pagination"
       v-if="hasMoreThanOnePage">
     <li v-for="page in pages"
-        :class="{
+        :class="[{
           [paging.disabledClass]: page.disabled,
           [paging.activeClass]: page.active
-        }"
+        }, 'page-item']"
         :key="page.key">
       <router-link :to="page.route"
+                   class="page-link"
                    onclick="this.blur();">
         {{ page.text }}
       </router-link>
