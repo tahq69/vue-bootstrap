@@ -1,7 +1,7 @@
 import { Utils } from "@/Utils"
 
 export type ColType = "control" | "label"
-export type ColSize = "lg" | "md" | "sm" | "xs"
+export type ColSize = "xl" | "lg" | "md" | "sm" | "xs"
 export type ColSizes = { [size in ColSize]: number }
 
 export class ColCalculator {
@@ -12,6 +12,8 @@ export class ColCalculator {
     withOffset = false,
     averageOffset = false
   ): string[] {
+    initial.push("col")
+
     Object.keys(sizes).forEach(size => {
       const media = size as ColSize
       const value = sizes[size as ColSize]
@@ -49,8 +51,8 @@ export class ColCalculator {
 
   private static colClass(size: number, media: ColSize, offset = false) {
     if (size > 0) {
-      const template = offset ? "col-{media}-offset-{size}" : "col-{media}-{size}"
-      return Utils.supplant(template, { media, size })
+      if (media === "xs") return offset ? `offset-${size}` : `col-${size}`
+      return offset ? `offset-${media}-${size}` : `col-${media}-${size}`
     }
 
     return ""

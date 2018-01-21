@@ -52,9 +52,12 @@ export default Vue.extend({
       <hr>
       <crip-row>
         <crip-col>
-          <crip-form-panel title="Form title"
-                           :form="form"
-                           @submit="save">
+          <crip-form-card title="Form title"
+                          :form="form"
+                          @submit="save">
+
+            <crip-card-action slot="actions"
+                              :to="{name: 'form'}">Form components</crip-card-action>
 
             <crip-form-group :errors="form.errors.val1"
                              label="Val1:"
@@ -62,7 +65,7 @@ export default Vue.extend({
               <input type="text"
                      id="val1"
                      v-model="form.data.val1"
-                     class="form-control">
+                     :class="[{'is-invalid': form.errors.val1}, 'form-control']">
             </crip-form-group>
 
             <crip-form-group>
@@ -70,7 +73,7 @@ export default Vue.extend({
                      class="btn btn-primary">
             </crip-form-group>
 
-          </crip-form-panel>
+          </crip-form-card>
         </crip-col>
       </crip-row>
 
@@ -82,9 +85,9 @@ export default Vue.extend({
 
         Vue.extend({
           template: `
-            &lt;crip-form-panel title="Form title"
-                             :form="form"
-                             @submit="save"&gt;
+            &lt;crip-form-card title="Form title"
+                            :form="form"
+                            @submit="save"&gt;
 
               &lt;crip-form-group :errors="form.errors.val1"
                                label="Val1:"
@@ -100,7 +103,7 @@ export default Vue.extend({
                        class="btn btn-primary"&gt;
               &lt;/crip-form-group&gt;
 
-            &lt;/crip-form-panel&gt;
+            &lt;/crip-form-card&gt;
           `,
 
           data() {

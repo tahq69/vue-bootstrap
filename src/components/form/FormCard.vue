@@ -2,9 +2,9 @@
 import Vue from "vue"
 
 import CAlert from "@/components/Alert.vue"
+import CCard from "@/components/card/Card.vue"
 import CCol from "@/components/grid/Col.vue"
 import CRow from "@/components/grid/Row.vue"
-import CPanel from "@/components/panel/Panel.vue"
 
 import { ColCalculator as Cols, ColSizes } from "@/ColCalculator"
 import { IClasses } from "@/types"
@@ -12,16 +12,18 @@ import { Utils } from "@/Utils"
 import { Form } from "./Form"
 
 export default Vue.extend({
-  name: "FormPanel",
+  name: "FormCard",
 
-  components: { CAlert, CCol, CPanel, CRow },
+  components: { CAlert, CCol, CCard, CRow },
 
   props: {
+    xl: { type: Number, default: 0 },
     lg: { type: Number, default: 0 },
     md: { type: Number, default: 0 },
     sm: { type: Number, default: 0 },
     xs: { type: Number, default: 12 },
 
+    bodyXl: { type: Number, default: 0 },
     bodyLg: { type: Number, default: 0 },
     bodyMd: { type: Number, default: 0 },
     bodySm: { type: Number, default: 0 },
@@ -40,6 +42,7 @@ export default Vue.extend({
   computed: {
     sizes(): ColSizes {
       return {
+        xl: this.xl,
         lg: this.lg,
         md: this.md,
         sm: this.sm,
@@ -49,6 +52,7 @@ export default Vue.extend({
 
     bodySizes(): ColSizes {
       return {
+        xl: this.bodyXl,
         lg: this.bodyLg,
         md: this.bodyMd,
         sm: this.bodySm,
@@ -62,7 +66,7 @@ export default Vue.extend({
 
     classes(): string[] {
       const classes = Cols.getClasses("control", this.sizes, [], true, true)
-      if (this.hasErrors) classes.push("has-data-errors")
+      if (this.hasErrors) classes.push("has-error")
       if (this.hasError) classes.push("has-global-error")
       return classes
     },
@@ -103,25 +107,27 @@ export default Vue.extend({
 <template>
   <form @submit.prevent="submit"
         :class="classes"
-        class="crip-form-panel form-horizontal">
+        class="crip-form-card form-horizontal">
 
-    <c-panel>
+    <CCard>
       <span slot="title">{{ title }}</span>
       <span slot="actions">
         <slot name="actions"></slot>
       </span>
 
-      <c-row>
-        <c-col v-if="showError">
-          <c-alert :is-visible.sync="showError">
+      <CRow>
+        <CCol v-if="showError">
+          <CAlert :is-visible.sync="showError">
             {{ error }}
-          </c-alert>
-        </c-col>
+          </CAlert>
+        </CCol>
+      </CRow>
 
+      <CRow>
         <div :class="bodyClasses">
           <slot/>
         </div>
-      </c-row>
-    </c-panel>
+      </CRow>
+    </CCard>
   </form>
 </template>

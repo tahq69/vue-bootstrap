@@ -41,7 +41,7 @@ export default Vue.extend({
     }, [])
     return {
       items,
-      paging: new Crip.Paging<User>(this, { route: { name: "table" }, perPage: 10 }),
+      paging: new Crip.Paging<User>({vm: this, route: { name: "table" }, perPage: 10 }),
     }
   },
 

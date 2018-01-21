@@ -13,6 +13,7 @@ export default Vue.extend({
   components: { FormErrors },
 
   props: {
+    xl: { type: Number, default: 0 },
     lg: { type: Number, default: 0 },
     md: { type: Number, default: 10 },
     sm: { type: Number, default: 8 },
@@ -31,6 +32,7 @@ export default Vue.extend({
 
     sizes(): ColSizes {
       return {
+        xl: this.xl,
         lg: this.lg,
         md: this.md,
         sm: this.sm,
@@ -39,12 +41,13 @@ export default Vue.extend({
     },
 
     labelClass(): string[] {
-      return Cols.getClasses("label", this.sizes, ["control-label"])
+      return Cols.getClasses("label", this.sizes, ["col-form-label", "text-right"])
     },
 
     controlClass(): string[] {
       const includeOffset = this.label === ""
-      return Cols.getClasses("control", this.sizes, [], includeOffset)
+      const defaults = this.hasErrors ? ["is-invalid"] : []
+      return Cols.getClasses("control", this.sizes, defaults, includeOffset)
     },
 
     formErrors(): string[] {
@@ -66,7 +69,7 @@ export default Vue.extend({
 
 <template>
   <div :class="{'has-error': hasErrors}"
-       class="form-group crip-form-group">
+       class="crip-form-group form-group row">
     <label v-if="label"
            :for="id"
            :id="`${id}-label`"
@@ -74,7 +77,7 @@ export default Vue.extend({
       {{ label }}
     </label>
     <div :class="controlClass">
-      <slot/>
+      <slot><!-- default slot --></slot>
       <form-errors :errors="formErrors" />
     </div>
   </div>

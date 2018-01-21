@@ -1,7 +1,7 @@
 <script lang="ts">
 import Vue from "vue"
 
-import CPanel from "@/components/panel/Panel.vue"
+import CCard from "@/components/card/Card.vue"
 import CPagination from "./Pagination.vue"
 import CPerPage from "./PerPage.vue"
 
@@ -10,7 +10,7 @@ import { Paging } from "./Paging"
 export default Vue.extend({
   name: "Grid",
 
-  components: { CPanel, CPagination, CPerPage },
+  components: { CCard, CPagination, CPerPage },
 
   props: {
     paging: { type: Paging, required: true },
@@ -22,10 +22,10 @@ export default Vue.extend({
 
 <template>
   <!--v-loading="paging.loading"-->
-  <c-panel :show-footer="true"
-           :show-body="false"
-           :show-heading="showHeading"
-           :type="type">
+  <CCard :show-footer="true"
+         :show-body="false"
+         :show-heading="showHeading"
+         :type="type">
 
     <span slot="title">
       <slot name="title"></slot>
@@ -42,17 +42,17 @@ export default Vue.extend({
 
     <div slot="footer"
          class="clearfix">
-      <c-pagination :paging="paging"
-                    class="pull-left"></c-pagination>
-      <c-per-page :paging="paging"
-                  class="pull-right"></c-per-page>
+      <CPagination :paging="paging"
+                   class="float-left"></CPagination>
+      <CPerPage :paging="paging"
+                class="float-right"></CPerPage>
     </div>
 
-  </c-panel>
+  </CCard>
 </template>
 
 <style lang="scss">
-.panel-body .pagination,
+.card-body .pagination,
 .grid-placeholder .table {
   margin: 0;
 }

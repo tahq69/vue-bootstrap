@@ -18,10 +18,9 @@ export default Vue.extend({
 
 <template>
   <ul v-if="hasErrors"
-      class="help-block crip-form-errors">
+      class="crip-invalid-feedback invalid-feedback">
     <li v-for="error in errors"
-        :key="error"
-        class="text-danger">
+        :key="error">
       {{ error }}
     </li>
   </ul>

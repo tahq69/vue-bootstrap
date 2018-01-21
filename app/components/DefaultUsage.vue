@@ -26,15 +26,15 @@ export default Vue.extend({
 
 <template>
   <example-section title="Default usage">
-    <div class="row">
-      <div class="col-xs-12">
-        <p>
-          TODO
-        </p>
+    <h5 class="card-title">Alerts</h5>
+    <p class="card-text">
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </p>
 
-        <crip-alert>Alert sample</crip-alert>
-      </div>
-    </div>
+    <p class="card-text">
+      <crip-alert>Alert sample</crip-alert>
+    </p>
 
     <code-sample>
       import Vue from "vue"
