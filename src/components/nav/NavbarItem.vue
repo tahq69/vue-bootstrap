@@ -12,13 +12,15 @@ export default Vue.extend({
   computed: {
     classes(): { [ker: string]: boolean } {
       const hasAction = this.item.route || this.item.href || this.item.click || this.item.divider
+      const isNavItem = hasAction && !this.item.divider && !this.submenu
 
       return {
         active: this.item.isActive,
         "dropdown-divider": this.item.divider,
         "dropdown-header": !hasAction,
         "dropdown-item": this.submenu && hasAction && !this.item.divider,
-        "nav-item nav-link": hasAction && !this.item.divider && !this.submenu,
+        "nav-item": isNavItem,
+        "nav-link": isNavItem,
       }
     },
   },
@@ -29,7 +31,7 @@ export default Vue.extend({
   <router-link v-if="item.route"
                :to="item.route"
                active-class="active"
-               :class="[submenu ? 'dropdown-item' : 'nav-item']"
+               :class="classes"
                v-html="item.text" />
 
   <a v-else-if="!item.route && item.href"

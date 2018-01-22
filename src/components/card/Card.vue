@@ -37,7 +37,7 @@ export default Vue.extend({
            [`card-${type}`]: !!type,
            [`border-${type}`]: !!type,
          },
-         'card', 'crip-card'
+         'card', 'crip-card', 'mb-3',
        ]">
 
     <div v-if="showHeader"
