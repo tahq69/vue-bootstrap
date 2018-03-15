@@ -1,11 +1,11 @@
 import Vue, { VueConstructor } from "vue"
-import { Location } from "vue-router"
+import { Location, Route } from "vue-router"
 
-import { IDictionary } from "$/index"
+import { IDictionary } from "./index"
 
 export type Direction = "asc" | "desc"
 
-export type CreatePagination<T extends IPagingItem> = (paging: Paging<T>) => Promise<IPaging<T>>
+export type CreatePagination<T extends IPagingItem> = (paging: Paging<T>, to: Route, from: Route) => Promise<IPaging<T>>
 export type Id = number | string
 
 export interface IPagingItem {

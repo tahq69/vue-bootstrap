@@ -9,16 +9,16 @@ export { Paging } from "./Paging"
 export const createPaging = <T extends IPagingItem>(callback: CreatePagination<T>) => {
   const pagination = new Paging<T>()
 
-  function update(route: Route): boolean {
+  function update(route: Route, from: Route): boolean {
     let hasChanged = false
-    if (route.params.sort && pagination.sort !== route.params.sort) {
+    if (route.params.sort && from.params.sort !== route.params.sort) {
       pagination.sort = route.params.sort
       hasChanged = true
     }
 
     if (route.params.direction) {
       const direction = route.params.direction === "asc" ? "asc" : "desc"
-      if (direction !== pagination.direction) {
+      if (direction !== from.params.direction) {
         pagination.direction = direction
         hasChanged = true
       }
@@ -26,7 +26,8 @@ export const createPaging = <T extends IPagingItem>(callback: CreatePagination<T
 
     if (route.params.perPage) {
       const perPage = parseInt(route.params.perPage, 10)
-      if (perPage !== pagination.perPage) {
+      const fromPerPage = parseInt(from.params.perPage, 10)
+      if (perPage !== fromPerPage) {
         pagination.perPage = perPage
         hasChanged = true
       }
@@ -34,7 +35,8 @@ export const createPaging = <T extends IPagingItem>(callback: CreatePagination<T
 
     if (route.params.page) {
       const page = parseInt(route.params.page, 10)
-      if (page !== pagination.page) {
+      const fromPage = parseInt(from.params.page, 10)
+      if (page !== fromPage) {
         pagination.page = page
         hasChanged = true
       }
@@ -52,9 +54,9 @@ export const createPaging = <T extends IPagingItem>(callback: CreatePagination<T
 
         // Make sure we read route parameters and set them to pagination before
         // we start fetching data from server.
-        update(to)
+        update(to, from)
 
-        callback(pagination).then(results => pagination.update(results) && next())
+        callback(pagination, to, from).then(results => pagination.update(results) && next())
       },
 
       beforeRouteUpdate(to, from, next) {
@@ -68,8 +70,8 @@ export const createPaging = <T extends IPagingItem>(callback: CreatePagination<T
         // Route may change not only for pagination rules, but for some custom
         // developer use case. In thous cases we may not need to fetch data
         // from server.
-        if (update(to)) {
-          callback(pagination).then(results => pagination.update(results) && next())
+        if (update(to, from)) {
+          callback(pagination, to, from).then(results => pagination.update(results) && next())
           return
         }
 
