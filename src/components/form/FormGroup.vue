@@ -23,6 +23,7 @@ export default Vue.extend({
     for: { type: String },
     form: { type: Object, default: () => new Form({ __: false }) },
     label: { type: String, default: "" },
+    compact: { type: Boolean, default: false },
   },
 
   computed: {
@@ -41,7 +42,9 @@ export default Vue.extend({
     },
 
     labelClass(): string[] {
-      return Cols.getClasses("label", this.sizes, ["col-form-label", "text-right"])
+      const defaults = ["col-form-label"]
+      if (this.compact) defaults.push("mb-0")
+      return Cols.getClasses("label", this.sizes, defaults)
     },
 
     controlClass(): string[] {
@@ -68,7 +71,7 @@ export default Vue.extend({
 </script>
 
 <template>
-  <div :class="{'has-error': hasErrors}"
+  <div :class="{'has-error': hasErrors, 'mb-1': compact}"
        class="crip-form-group form-group row">
     <label v-if="label"
            :for="id"
