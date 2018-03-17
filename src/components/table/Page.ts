@@ -30,9 +30,9 @@ export class Page {
     const route = JSON.parse(JSON.stringify(original))
 
     if (!route.params) {
-      route.params = { page: this.nr }
+      route.params = { page: this.nr.toString() }
     } else {
-      route.params.page = this.nr
+      route.params.page = this.nr.toString()
     }
 
     return route

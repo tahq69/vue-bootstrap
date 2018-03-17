@@ -1,48 +1,91 @@
 import Vue from "vue"
-import { Route } from "vue-router"
+import { RawLocation, Route } from "vue-router"
 import { Paging } from "./Paging"
 
 import { CreatePagination, IPagingItem } from "$/table"
 
 export { Paging } from "./Paging"
 
+type Next = (to?: RawLocation | false | ((vm: Vue) => any) | void) => void
+
 export const createPaging = <T extends IPagingItem>(callback: CreatePagination<T>) => {
   const pagination = new Paging<T>()
 
-  function update(route: Route, from: Route): boolean {
+  function update(route: Route, from: Route, onEnter = false) {
     let hasChanged = false
-    if (route.params.sort && from.params.sort !== route.params.sort) {
-      pagination.sort = route.params.sort
+
+    if (route.params.sort !== pagination.sort) {
+      pagination.sort = route.params.sort || pagination.sort
+      hasChanged = hasChanged || !onEnter || !route.params.sort
+    }
+
+    if (route.params.direction !== pagination.direction) {
+      const direction = (
+        route.params.direction ?
+          route.params.direction :
+          pagination.direction
+      ) === "asc" ? "asc" : "desc"
+
+      pagination.direction = direction
+      hasChanged = hasChanged || !onEnter || !route.params.direction
+    }
+
+    if (route.params.page !== pagination.page.toString()) {
+      const page = parseInt(route.params.page, 10) || pagination.page
+      pagination.page = page
+      hasChanged = hasChanged || !onEnter || !route.params.page
+    }
+
+    const pagingPerPage = pagination.perPage.toString()
+
+    if (
+      from.params.perPage !== route.params.perPage &&
+      route.params.page !== "1" &&
+      !onEnter
+    ) {
+      // When changing per page value it is possible to occur on a page without
+      // data. For this reason we need redirect user back to the first page.
+
+      pagination.page = 1
       hasChanged = true
     }
 
-    if (route.params.direction) {
-      const direction = route.params.direction === "asc" ? "asc" : "desc"
-      if (direction !== from.params.direction) {
-        pagination.direction = direction
-        hasChanged = true
-      }
+    if (route.params.perPage !== pagingPerPage) {
+      const perPage = parseInt(route.params.perPage, 10) || pagination.perPage
+      pagination.perPage = perPage
+      hasChanged = hasChanged || !onEnter || !perPage
     }
 
-    if (route.params.perPage) {
-      const perPage = parseInt(route.params.perPage, 10)
-      const fromPerPage = parseInt(from.params.perPage, 10)
-      if (perPage !== fromPerPage) {
-        pagination.perPage = perPage
-        hasChanged = true
-      }
+    return {
+      hasChanged,
+      hash: route.hash,
+      name: route.name,
+      params: {
+        ...route.params,
+        direction: pagination.direction,
+        page: pagination.page.toString(),
+        perPage: pagination.perPage.toString(),
+        sort: pagination.sort,
+      },
+      path: route.path,
+      query: route.query,
+    }
+  }
+
+  function onRouteChange(to: Route, from: Route, next: Next, onEnter = false): void {
+    // Make sure we read route parameters and set them to pagination before
+    // we start fetching data from server.
+    const target = update(to, from, onEnter)
+
+    if (target.hasChanged) {
+      next(target)
+      return
     }
 
-    if (route.params.page) {
-      const page = parseInt(route.params.page, 10)
-      const fromPage = parseInt(from.params.page, 10)
-      if (page !== fromPage) {
-        pagination.page = page
-        hasChanged = true
-      }
-    }
-
-    return hasChanged
+    // Only when route is ready and matches current pagination data start
+    // fetching data from server.
+    callback(pagination, to, from)
+      .then(results => pagination.update(results) && next())
   }
 
   return {
@@ -51,12 +94,7 @@ export const createPaging = <T extends IPagingItem>(callback: CreatePagination<T
         // Called before the route that renders this component is confirmed.
         // Does NOT have access to `this` component instance,
         // because it has not been created yet when this guard is called!
-
-        // Make sure we read route parameters and set them to pagination before
-        // we start fetching data from server.
-        update(to, from)
-
-        callback(pagination, to, from).then(results => pagination.update(results) && next())
+        onRouteChange(to, from, next, true)
       },
 
       beforeRouteUpdate(to, from, next) {
@@ -66,16 +104,7 @@ export const createPaging = <T extends IPagingItem>(callback: CreatePagination<T
         // navigate between `/foo/1` and `/foo/2`, the same `Foo` component
         // instance will be reused, and this hook will be called when that
         // happens. Has access to `this` component instance.
-
-        // Route may change not only for pagination rules, but for some custom
-        // developer use case. In thous cases we may not need to fetch data
-        // from server.
-        if (update(to, from)) {
-          callback(pagination, to, from).then(results => pagination.update(results) && next())
-          return
-        }
-
-        next()
+        onRouteChange(to, from, next)
       },
     }),
     paging: pagination,
