@@ -92,7 +92,7 @@ export default Vue.extend({
         :key="page.key">
       <router-link :to="page.route"
                    class="page-link"
-                   onclick="this.blur();">
+                   @click.native="$event.target.blur()">
         {{ page.text }}
       </router-link>
     </li>

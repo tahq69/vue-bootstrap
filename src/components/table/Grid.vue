@@ -43,7 +43,7 @@ export default Vue.extend({
     <div slot="footer"
          class="clearfix">
       <CPagination :paging="paging"
-                   class="float-left"></CPagination>
+                   class="float-left mb-0"></CPagination>
       <CPerPage :paging="paging"
                 class="float-right"></CPerPage>
     </div>
