@@ -9,6 +9,7 @@ import ClickOutside from "./directives/ClickOutside"
 import Focus from "./directives/Focus"
 
 import FormCard from "./components/form/FormCard.vue"
+import FormErrors from "./components/form/FormErrors.vue"
 import FormGroup from "./components/form/FormGroup.vue"
 
 import Col from "./components/grid/Col.vue"
@@ -39,8 +40,9 @@ const install = (vue: typeof Vue, options: IBootstrapOptions = {}) => {
   vue.component(`${prefix}Alert`, Alert)
   vue.component(`${prefix}Gravatar`, Gravatar)
 
-  vue.component(`${prefix}FormGroup`, FormGroup)
   vue.component(`${prefix}FormCard`, FormCard)
+  vue.component(`${prefix}FormGroup`, FormGroup)
+  vue.component(`${prefix}FormErrors`, FormErrors)
 
   vue.component(`${prefix}Col`, Col)
   vue.component(`${prefix}Row`, Row)
