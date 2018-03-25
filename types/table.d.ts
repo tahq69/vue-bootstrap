@@ -19,9 +19,7 @@ export interface IPaging<T extends IPagingItem> {
   perPage?: number
 }
 
-export interface IPaginationOptions {
-  vm?: Vue
-  route?: Location
+export interface IPaginationBaseOptions {
   activeClass?: string
   disabledClass?: string
   show?: number
@@ -29,6 +27,11 @@ export interface IPaginationOptions {
   sortDirection?: Direction
   perPage?: number
   perPageOptions?: number[]
+}
+
+export interface IPaginationOptions extends IPaginationBaseOptions {
+  vm?: Vue
+  route?: Location
 }
 
 export declare class Paging<T extends IPagingItem> {
@@ -58,7 +61,8 @@ export declare class Paging<T extends IPagingItem> {
 }
 
 export declare function createPaging<T extends IPagingItem>(
-  callback: CreatePagination<T>
+  callback: CreatePagination<T>,
+  options?: IPaginationBaseOptions
 ): {
   mixin: VueConstructor<Record<never, any> & Vue>
   paging: Paging<T>

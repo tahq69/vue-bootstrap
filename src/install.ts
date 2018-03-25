@@ -1,6 +1,8 @@
+// tslint:disable:object-literal-sort-keys
 import Vue from "vue"
 
-import { IBootstrapOptions } from "$/index"
+import { IBootstrapOptions, LogLevel } from "$/index"
+import { log, setVerbose } from "@/help"
 
 import Alert from "./components/Alert.vue"
 import Gravatar from "./components/Gravatar.vue"
@@ -35,36 +37,45 @@ const install = (vue: typeof Vue, options: IBootstrapOptions = {}) => {
   installed = true
   vueInstance = vue
 
-  const prefix = options.prefix ? options.prefix : "Crip"
+  const defaults: { prefix: string, logLevel: LogLevel, verbose: boolean } = {
+    prefix: "Crip",
+    logLevel: "error",
+    verbose: true
+  }
 
-  vue.component(`${prefix}Alert`, Alert)
-  vue.component(`${prefix}Gravatar`, Gravatar)
+  const p = Object.assign(defaults, options)
+  if (p.verbose) setVerbose(p.logLevel)
 
-  vue.component(`${prefix}FormCard`, FormCard)
-  vue.component(`${prefix}FormGroup`, FormGroup)
-  vue.component(`${prefix}FormErrors`, FormErrors)
+  log("debug", "install", { options: p })
 
-  vue.component(`${prefix}Col`, Col)
-  vue.component(`${prefix}Row`, Row)
+  vue.component(`${p.prefix}Alert`, Alert)
+  vue.component(`${p.prefix}Gravatar`, Gravatar)
 
-  vue.component(`${prefix}Navbar`, Navbar)
-  vue.component(`${prefix}NavbarItems`, NavbarItems)
-  if (prefix !== "C") {
+  vue.component(`${p.prefix}FormCard`, FormCard)
+  vue.component(`${p.prefix}FormGroup`, FormGroup)
+  vue.component(`${p.prefix}FormErrors`, FormErrors)
+
+  vue.component(`${p.prefix}Col`, Col)
+  vue.component(`${p.prefix}Row`, Row)
+
+  vue.component(`${p.prefix}Navbar`, Navbar)
+  vue.component(`${p.prefix}NavbarItems`, NavbarItems)
+  if (p.prefix !== "C") {
     // This component is used recursively, so we should ensure it is registered
     // with correct name for internal use.
     vue.component(`CNavbarItems`, NavbarItems)
   }
 
-  vue.component(`${prefix}Card`, Card)
-  vue.component(`${prefix}CardAction`, CardAction)
+  vue.component(`${p.prefix}Card`, Card)
+  vue.component(`${p.prefix}CardAction`, CardAction)
 
-  vue.component(`${prefix}Grid`, Grid)
-  vue.component(`${prefix}GridHeader`, GridHeader)
-  vue.component(`${prefix}Pagination`, Pagination)
-  vue.component(`${prefix}PerPage`, PerPage)
+  vue.component(`${p.prefix}Grid`, Grid)
+  vue.component(`${p.prefix}GridHeader`, GridHeader)
+  vue.component(`${p.prefix}Pagination`, Pagination)
+  vue.component(`${p.prefix}PerPage`, PerPage)
 
-  vue.directive(`${prefix}Focus`, Focus)
-  vue.directive(`${prefix}ClickOutside`, ClickOutside)
+  vue.directive(`${p.prefix}Focus`, Focus)
+  vue.directive(`${p.prefix}ClickOutside`, ClickOutside)
 }
 
 export default install
