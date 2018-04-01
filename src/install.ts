@@ -6,6 +6,7 @@ import { log, setVerbose } from "@/help"
 
 import Alert from "./components/Alert.vue"
 import Gravatar from "./components/Gravatar.vue"
+import Modal from "./components/Modal.vue"
 
 import ClickOutside from "./directives/ClickOutside"
 import Focus from "./directives/Focus"
@@ -48,6 +49,7 @@ const install = (vue: typeof Vue, options: IBootstrapOptions = {}) => {
 
   log("debug", "install", { options: p })
 
+  vue.component(`${p.prefix}Modal`, Modal)
   vue.component(`${p.prefix}Alert`, Alert)
   vue.component(`${p.prefix}Gravatar`, Gravatar)
 
