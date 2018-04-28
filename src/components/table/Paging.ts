@@ -24,7 +24,7 @@ export class Paging<T extends { id: string | number }> {
 
   constructor(
     {
-      activeClass = "active",
+      activeClass = "active table-active",
       disabledClass = "disabled",
       perPage = 10,
       perPageOptions = [5, 10, 20, 50, 100],
@@ -34,7 +34,7 @@ export class Paging<T extends { id: string | number }> {
       sortDirection = "desc",
       vm,
     }: IPaginationOptions = {
-      activeClass: "active",
+      activeClass: "active table-active",
       disabledClass: "disabled",
       perPage: 10,
       perPageOptions: [5, 10, 20, 50, 100],

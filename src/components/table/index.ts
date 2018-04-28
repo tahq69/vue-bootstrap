@@ -15,7 +15,7 @@ type Next = (to?: RawLocation | false | ((vm: Vue) => any) | void) => void
 
 export const createPaging = <T extends IPagingItem>(
   callback: CreatePagination<T>, {
-    activeClass = "active",
+    activeClass = "active table-active",
     disabledClass = "disabled",
     perPage = 10,
     perPageOptions = [5, 10, 20, 50, 100],
@@ -23,7 +23,7 @@ export const createPaging = <T extends IPagingItem>(
     sortBy = "id",
     sortDirection = "desc",
   }: IPaginationBaseOptions = {
-      activeClass: "active",
+      activeClass: "active table-active",
       disabledClass: "disabled",
       perPage: 10,
       perPageOptions: [5, 10, 20, 50, 100],
