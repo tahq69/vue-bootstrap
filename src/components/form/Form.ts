@@ -26,6 +26,8 @@ export class Form<DataT, ErrorT = string[]> {
   }
 
   public addErrors(errors: IErrors<ErrorT> | string) {
+    if (errors instanceof Error) throw errors
+
     if (typeof errors === "string") {
       this.unknownError = errors
       return
